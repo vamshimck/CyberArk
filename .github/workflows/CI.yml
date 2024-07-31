@@ -31,7 +31,7 @@ jobs:
       id-token: 'write'
       contents: 'read'
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       # ...
       - name: Import Secrets using CyberArk Conjur Secret Fetcher
