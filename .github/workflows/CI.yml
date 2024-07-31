@@ -35,8 +35,8 @@ jobs:
       - name: Import Secrets using CyberArk Conjur Secret Fetcher
         uses: cyberark/conjur-action@v2.0.2
         with:
-          url: ${{ https://mckesson.cyberark.cloud/secretsmgr/resources}}
+          url: ${{ secrets.CONJUR_URL}}
           account: conjur
-          authn_id: ${{ conjur/authn-jwt/dev }}
+          authn_id: ${{ secrets.authn_id }}
           secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username;data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/password
       # ...
