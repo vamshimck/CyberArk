@@ -40,4 +40,5 @@ jobs:
           url: ${{ secrets.CONJUR_URL}}
           account: conjur
           authn_id: ${{ secrets.authn_id }}
+          secrets: username;password
       # ...
