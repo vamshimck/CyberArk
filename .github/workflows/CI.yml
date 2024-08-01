@@ -41,5 +41,6 @@ jobs:
           url: ${{ secrets.CONJUR_URL}}
           account: conjur
           authn_id: ${{ secrets.authn_id }}
+          secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username
        
       # ...
