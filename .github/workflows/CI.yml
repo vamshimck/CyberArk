@@ -1,3 +1,4 @@
+
 # This is a basic workflow to help you get started with Actions
 
 name: CI
@@ -40,6 +41,5 @@ jobs:
           url: ${{ secrets.CONJUR_URL}}
           account: conjur
           authn_id: ${{ secrets.authn_id }}
-          secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username;data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/password
        
       # ...
