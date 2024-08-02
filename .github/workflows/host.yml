@@ -1,3 +1,4 @@
+- !policy
   id: github-apps
   body:
       - !group
