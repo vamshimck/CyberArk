@@ -1,4 +1,5 @@
-  id: conjur/authn-jwt/github
+- !policy
+  id: github
   body:
       - !webservice
 
