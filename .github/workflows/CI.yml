@@ -41,11 +41,13 @@ jobs:
           url: ${{ secrets.CONJUR_URL}}
           account: conjur
           authn_id: ${{ secrets.authn_id }}
-          variables: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username|username;data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/password|password
+        env: 
+          username: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username
+          password: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/password
       - name: Check Username Outside Docker Container for Secret Masking
         run: |
-         echo "name = ${{variables.username}}" 
+         echo "$username"
       - name: Check Password Outside Docker Container for Secret Masking
         run: |
-         echo "pwd = ${{variables.password}}"
+         echo "$password"
       # ...
