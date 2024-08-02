@@ -41,9 +41,11 @@ jobs:
           url: ${{ secrets.CONJUR_URL}}
           account: conjur
           authn_id: ${{ secrets.authn_id }}
-          SQL_USERNAME: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username|sql_username
+          secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username|username
       - name: Check SQL_USERNAME Outside Docker Container for Secret Masking
-        run: printenv "${{SQL_USERNAME.SQL_USERNAME}}" | sed 's/./& /g'
+        run: |
+         echo "name = ${{secrets.username}}" >>$username_output
+         printenv $username_output
       - name: Check url Outside Docker Container for Secret Masking
         run: printenv url | sed 's/./& /g'
       # ...
