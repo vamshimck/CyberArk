@@ -47,5 +47,5 @@ jobs:
          echo "name = ${{secrets.username}}" 
       - name: Check Password Outside Docker Container for Secret Masking
         run: |
-         echo "name = ${{secrets.password}}"
+         echo "pwd = ${{secrets.password}}"
       # ...
