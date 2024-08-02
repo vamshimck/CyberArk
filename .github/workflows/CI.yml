@@ -43,6 +43,6 @@ jobs:
           account: conjur
           authn_id: ${{ secrets.authn_id }}
           secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username|secrets.USERNAME
-          run: echo $url
+          run: echo url
        
       # ...
