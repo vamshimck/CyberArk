@@ -1,0 +1,15 @@
+- !policy
+  id: github-apps
+  body:
+      - !group
+
+      - &hosts
+        - !host
+          id: release
+          annotations:
+              authn-jwt/github/repository: my-repo/conjur-action
+              authn-jwt/github/workflow: release
+
+      - !grant
+        role: !group
+        members: *hosts
