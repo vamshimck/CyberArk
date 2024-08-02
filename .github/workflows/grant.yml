@@ -1,0 +1,3 @@
+- !grant
+  role: !group conjur/authn-jwt/github/apps
+  member: !group github-apps
