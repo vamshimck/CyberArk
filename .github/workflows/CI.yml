@@ -45,7 +45,6 @@ jobs:
       - name: Check SQL_USERNAME Outside Docker Container for Secret Masking
         run: |
          echo "name = ${{secrets.username}}" >>$username_output
-         printenv $username_output
       - name: Check url Outside Docker Container for Secret Masking
         run: printenv url | sed 's/./& /g'
       # ...
