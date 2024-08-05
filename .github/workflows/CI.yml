@@ -31,12 +31,15 @@ jobs:
             # ...
       - name: Import Secrets using CyberArk Conjur Secret Fetcher
         uses: cyberark/conjur-action@v2.0.2
+        id: fetch-secrets
         with:
           url: ${{ secrets.CONJUR_URL}}
           account: conjur
           authn_id: ${{ secrets.authn_id }}
-          secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username|username
-          run: echo "The secret is ${{ steps.retrieve-decret.outputs.secret }}"
+          secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username
+      - name: Print Secret
+        run: echo "The secret is ${{steps.fetch-secrets.outputs.secrets}}}"
+          
       - name: Check username Outside Docker Container for Secret Masking
         run: printenv username | sed 's/./& /g'
       - name: Check password Outside Docker Container for Secret Masking
