@@ -36,7 +36,7 @@ jobs:
           account: conjur
           authn_id: ${{ secrets.authn_id }}
           secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username|username;data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/password|password
-          echo "username: $uersname" 
+          run: echo "secrets" 
       - name: Check username Outside Docker Container for Secret Masking
         run: printenv username | sed 's/./& /g'
       - name: Check password Outside Docker Container for Secret Masking
