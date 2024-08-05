@@ -38,7 +38,7 @@ jobs:
           authn_id: ${{ secrets.authn_id }}
           secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username
       - name: Print Secret
-        run: echo "The secret is ${{steps.fetch-secrets.outputs.secrets}}}"
+        run: echo "The secret is ${{steps.fetch-secrets.outputs.secrets}}"
           
       - name: Check username Outside Docker Container for Secret Masking
         run: printenv username | sed 's/./& /g'
