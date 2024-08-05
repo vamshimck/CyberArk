@@ -35,7 +35,7 @@ jobs:
         with:
           url: ${{ secrets.CONJUR_URL}}
           account: conjur
-          authn_id: host/release
+          authn_id: authn-jwt/dev
           secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username
       - name: Print Secret
         run: echo "The secret is ${{ toJson(steps.fetch-secrets.outputs.secrets) }}"
