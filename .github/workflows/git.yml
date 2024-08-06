@@ -1,3 +1,0 @@
-- !grant
-  role: !group vault/D_ZH_PAM_akv-cyberark-secmgr/delegation/consumers
-  member: !group github-apps
