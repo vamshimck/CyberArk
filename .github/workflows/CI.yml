@@ -32,7 +32,7 @@ jobs:
         uses: cyberark/conjur-action@v2.0.2
         id: fetch-secrets
         with:
-          url: https://mckesson.secretsmgr.cyberark.cloud/api
+          url: https://mckesson.secretsmgr.cyberark.cloud
           account: conjur
           authn_id: authn-jwt/github
           secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username|sql_username;data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/password|sql_password    
