@@ -30,7 +30,7 @@ jobs:
           export CONJUR_APPLIANCE_URL=https://mckesson.secretsmgr.cyberark.cloud
           export CONJUR_ACCOUNT=conjur
           export CONJUR_AUTHN_LOGIN=sh917si
-          conjur authn login -u sh917si -p eY-3q<>2#g)snz.*#DT|@
+          conjur authn login -u sh917si -p "eY-3q<>2#g)snz.*#DT|@"
 
       - name: Fetch secret
         id: fetch-secret
