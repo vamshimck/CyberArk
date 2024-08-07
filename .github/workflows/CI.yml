@@ -19,12 +19,18 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+      
   fetch-secrets:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+      - name: Install Conjur CLI
+        run: |
+            curl -O https://s3.amazonaws.com/conjur-releases/oss/conjur-cli-ruby/latest/conjur-cli-linux-amd64.tar.gz
+            tar xzf conjur-cli-linux-amd64.tar.gz
+            sudo mv conjur /usr/local/bin/conjur
+            conjur --version
       - name: Authenticate with Conjur
         run: |
           export CONJUR_APPLIANCE_URL=https://mckesson.secretsmgr.cyberark.cloud
