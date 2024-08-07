@@ -27,9 +27,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Install Conjur CLI
         run: |
-            curl -O https://s3.amazonaws.com/conjur-releases/oss/conjur-cli-ruby/latest/conjur-cli-linux-amd64.tar.gz
-            tar xzf conjur-cli-linux-amd64.tar.gz
-            sudo mv conjur /usr/local/bin/conjur
+            curl -L -o conjur-cli-go_8.0.1_amd64.deb https://github.com/cyberark/conjur-cli/releases/download/v8.0.1/conjur-cli-go_8.0.1_amd64.deb
+            sudo dpkg -i ./conjur-cli-go_8.0.1_amd64.deb
             conjur --version
       - name: Authenticate with Conjur
         run: |
