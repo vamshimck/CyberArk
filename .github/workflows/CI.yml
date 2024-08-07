@@ -27,26 +27,17 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Import Secrets using CyberArk Conjur Secret Fetcher
-        uses: cyberark/conjur-action@v2.0.2
-        id: fetch-secrets
+            # ...
+      - uses: actions/checkout@v1 
+      - name: Use CyberArk Conjur Secret Fetcher w/ GitHub JWT
+        uses: ./
         with:
-          url: https://mckesson.secretsmgr.cyberark.cloud
+          url: https://mckesson.secretsmgr.cyberark.cloud/api
           account: conjur
           authn_id: authn-jwt/github
           secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username|sql_username;data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/password|sql_password    
-      - name: Run a script using fetched secrets
-        run: |
-            echo "Using fetched secrets:"
-            echo "SQL Username: $sql_username"
-            echo "SQL Password: $sql_password"
-        # env:
-        #     sql_username: ${{ secrets.sql_username }}
-        #     sql_password: ${{ secrets.sql_password }} 
-      # - name: Check SQL_USERNAME Outside Docker Container for Secret Masking
-      #   run: printenv SQL_USERNAME | sed 's/./& /g'
-      # - name: Check SQL_PASSWORD Outside Docker Container for Secret Masking
-      #   run: printenv SQL_PASSWORD | sed 's/./& /g'
+      - name: Check SQL_USERNAME Outside Docker Container for Secret Masking
+        run: printenv SQL_USERNAME | sed 's/./& /g'
+      - name: Check SQL_PASSWORD Outside Docker Container for Secret Masking
+        run: printenv SQL_PASSWORD | sed 's/./& /g'
       # ...
