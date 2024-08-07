@@ -19,25 +19,21 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-  test:
-    # ...
-    permissions:
-      id-token: 'write'
-      contents: 'read'
-    # The type of runner that the job will run on
+  fetch-secrets:
     runs-on: ubuntu-latest
     steps:
-            # ...
-      - uses: actions/checkout@v1 
-      - name: Use CyberArk Conjur Secret Fetcher w/ GitHub JWT
-        uses: ./
-        with:
-          url: https://mckesson.secretsmgr.cyberark.cloud
-          account: conjur
-          authn_id: authn-jwt/github
-          secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username|sql_username;data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/password|sql_password    
-      - name: Check SQL_USERNAME Outside Docker Container for Secret Masking
-        run: printenv SQL_USERNAME | sed 's/./& /g'
-      - name: Check SQL_PASSWORD Outside Docker Container for Secret Masking
-        run: printenv SQL_PASSWORD | sed 's/./& /g'
-      # ...
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Authenticate with Conjur
+        run: |
+          export CONJUR_APPLIANCE_URL=https://mckesson.secretsmgr.cyberark.cloud
+          export CONJUR_ACCOUNT=conjur
+          export CONJUR_AUTHN_LOGIN=sh917si
+          conjur authn login -u sh917si -p eY-3q<>2#g)snz.*#DT|@
+
+      - name: Fetch secret
+        id: fetch-secret
+        run: |
+          secret=$(conjur variable value data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username)
+          echo "::set-output name=secret::$secret"
