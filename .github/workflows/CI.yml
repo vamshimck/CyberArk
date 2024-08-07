@@ -27,7 +27,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Install Conjur CLI
         run: |
-            curl -L -o conjur-cli-go_8.0.1_amd64.deb https://github.com/cyberark/conjur-cli/releases/download/v8.0.1/conjur-cli-go_8.0.1_amd64.deb
             pip install conjur
             conjur --version
       - name: Authenticate with Conjur
@@ -35,7 +34,7 @@ jobs:
           export CONJUR_APPLIANCE_URL=https://mckesson.secretsmgr.cyberark.cloud
           export CONJUR_ACCOUNT=conjur
           export CONJUR_AUTHN_LOGIN=sh917si
-          conjur authn login -u sh917si -p "eY-3q<>2#g)snz.*#DT|@"
+          conjur login -u sh917si -p "eY-3q<>2#g)snz.*#DT|@"
 
       - name: Fetch secret
         id: fetch-secret
