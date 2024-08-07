@@ -1,0 +1,14 @@
+- !policy
+  id: my-app
+  body:
+    - !variable
+      id: my-secret
+
+    - !webservice
+      id: authn-jwt/github
+
+    - !host
+      id: github-actions
+      annotations:
+        authn-jwt/github/issuer: "https://token.actions.githubusercontent.com"
+        authn-jwt/github/identity: "repo:<YOUR_GITHUB_ORG>/<YOUR_REPO>:ref:refs/heads/<YOUR_BRANCH>"
