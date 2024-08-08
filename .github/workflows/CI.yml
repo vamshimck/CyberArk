@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Use CyberArk Conjur Secret Fetcher Action w/ GitHub JWT
-        uses: ./
+        uses: ./run.sh
         with:
           url: https://mckesson.secretsmgr.cyberark.cloud
           account: conjur
