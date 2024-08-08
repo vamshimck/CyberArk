@@ -23,8 +23,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3 
-      - name: Use CyberArk Conjur Secret Fetcher Action w/ GitHub JWT
-        uses: action.yml
         with: # Repository name with owner. actions/checkout 
           Default: ${{ github.repository }}
           url: https://mckesson.secretsmgr.cyberark.cloud
