@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3 
-        with: # Repository name with owner. For example, actions/checkout 
+        with: # Repository name with owner. actions/checkout 
           Default: ${{ github.repository }}
           url: https://mckesson.secretsmgr.cyberark.cloud
           account: conjur
