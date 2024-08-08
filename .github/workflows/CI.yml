@@ -21,7 +21,7 @@ jobs:
       contents: 'read'
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v1
       - name: Use CyberArk Conjur Secret Fetcher Action w/ GitHub JWT
         uses: ./run.sh
         with:
