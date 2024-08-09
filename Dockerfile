@@ -1,7 +1,9 @@
 FROM alpine:3.15
 
-WORKDIR /var/www/conjur-action
+RUN apk add --no-cache bash curl jq
 
-RUN apk add --no-cache bash
+COPY entrypoint.sh /entrypoint.sh
 
-COPY . /var/www/conjur-action/.
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
