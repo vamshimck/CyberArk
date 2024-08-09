@@ -31,10 +31,6 @@ jobs:
           account: conjur
           authn_id: authn-jwt/dev
           secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username|sql_username;data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/password|sql_password
-      - name: Run Docker Container
-        run: |
-          docker run --rm alpine:3.19
-          
       - name: Check SQL_USERNAME Outside Docker Container for Secret Masking
         run: printenv SQL_USERNAME | sed 's/./& /g'
       - name: Check SQL_PASSWORD Outside Docker Container for Secret Masking
