@@ -1,6 +1,12 @@
 #!/bin/bash
 # Conjur Secret Retrieval for GitHub Action conjur-action
 
+# Read command-line arguments
+INPUT_URL="https://mckesson.secretsmgr.cyberark.cloud"
+INPUT_ACCOUNT="conjur"
+INPUT_AUTHN_ID="authn-jwt/dev"
+INPUT_SECRETS="data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username|sql_username;data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/password|sql_password"
+
 urlencode() {
     # urlencode <string>
     old_lc_collate=$LC_COLLATE
