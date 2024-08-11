@@ -36,6 +36,7 @@ conjur_authn() {
 
 		echo "::debug Authenticate via Authn-JWT"
 		JWT_TOKEN=$(curl -H "Authorization:bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq -r .value )
+        echo "JWT Token: $JWT_TOKEN"
 
 		if [[ -n "$INPUT_CERTIFICATE" ]]; then
 			token=$(curl --cacert conjur_"$INPUT_ACCOUNT".pem --request POST "$INPUT_URL/authn-jwt/$INPUT_AUTHN_ID/$INPUT_ACCOUNT/authenticate" --header 'Content-Type: application/x-www-form-urlencoded' --header "Accept-Encoding: base64" --data-urlencode jwt=$JWT_TOKEN)
@@ -59,6 +60,7 @@ conjur_authn() {
 array_secrets() {
     IFS=';'
     read -ra SECRETS <<< "$INPUT_SECRETS" # [0]=db/sqlusername | sql_username [1]=db/sql_password
+    echo "Secrets Array: ${SECRETS[@]}"
 }
 
 set_secrets() {
@@ -85,9 +87,12 @@ set_secrets() {
             secretVal=$(curl -k -H "Authorization: Token token=\"$token\"" "$INPUT_URL"/secrets/"$INPUT_ACCOUNT"/variable/"$secretId")
         fi
 
-        echo ::add-mask::"${secretVal}" # Masks the value in all logs & output
+       # echo ::add-mask::"${secretVal}" # Masks the value in all logs & output
         echo "${envVar}=${secretVal}" >> $GITHUB_ENV # Set environment variable
     done
+    else 
+   echo "::error::No secret found for retrieval from Conjur Vault"
+  fi
 }
 
 # URL-encode Host ID for future use
