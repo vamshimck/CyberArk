@@ -90,9 +90,6 @@ set_secrets() {
        # echo ::add-mask::"${secretVal}" # Masks the value in all logs & output
         echo "${envVar}=${secretVal}" >> $GITHUB_ENV # Set environment variable
     done
-  else 
-    echo "::error::No secret found for retrieval from Conjur Vault"
-  fi
 }
 
 # URL-encode Host ID for future use
