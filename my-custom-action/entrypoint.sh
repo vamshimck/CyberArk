@@ -35,9 +35,8 @@ conjur_authn() {
 	if [[ -n "$INPUT_AUTHN_ID" ]]; then
 
 		echo "::debug Authenticate via Authn-JWT"
-		JWT_TOKEN=$(curl -k --header "Content-Type: text/plain" --header "Accept-Encoding: base64" --request POST "https://mckesson.secretsmgr.cyberark.cloud/aauthn-jwt/github/conjur/authenticate")
-    #JWT_TOKEN=$(curl -H "Authorization:bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq -r .value )
-        echo "JWT Token: $JWT_TOKEN"
+     JWT_TOKEN=$(curl -H "Authorization:bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq -r .value )
+        echo "JWT Token: $JWT_TOKEN"      
 
 		if [[ -n "$INPUT_CERTIFICATE" ]]; then
 			token=$(curl --cacert conjur_"$INPUT_ACCOUNT".pem --request POST "$INPUT_URL/authn-jwt/$INPUT_AUTHN_ID/$INPUT_ACCOUNT/authenticate" --header 'Content-Type: application/x-www-form-urlencoded' --header "Accept-Encoding: base64" --data-urlencode jwt=$JWT_TOKEN)
