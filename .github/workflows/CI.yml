@@ -24,7 +24,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3 
       - name: Use My Custom Action
-        run: https://abd4739.id.cyberark.cloud
+        run: https://mckesson.secretsmgr.cyberark.cloud/api/authn-jwt/github/conjur/data/github-apps/release/authenticate 
       #   with: # Repository name with owner. actions/checkout 
       #     Default: ${{ github.repository }}
       #     url: https://ab.id.cyberark.cloud
