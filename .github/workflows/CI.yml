@@ -22,19 +22,14 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3 
-      - name: Use My Custom Action
-        uses: ./my-custom-action
-        with: # Repository name with owner. actions/checkout 
-          Default: ${{ github.repository }}
+        uses: actions/checkout@v3
+      - name: Import Secrets using CyberArk Conjur Secret Fetcher Action
+        uses: cyberark/conjur-action@v2.0.5
+        with:
           url: https://mckesson.secretsmgr.cyberark.cloud
           account: conjur
           authn_id: authn-jwt/dev
           secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username|sql_username;data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/password|sql_password
-      - name: Check SQL_USERNAME Outside Docker Container for Secret Masking
-        run: printenv SQL_USERNAME | sed 's/./& /g'
-      - name: Check SQL_PASSWORD Outside Docker Container for Secret Masking
-        run: printenv SQL_PASSWORD | sed 's/./& /g'
       
       # # - name: Use My Custom Action
       # #   uses: ./my-custom-action
