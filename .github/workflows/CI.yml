@@ -24,18 +24,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3 
       - name: Use My Custom Action
-        run: |
-          conjur login -i sh917si -p 'mZs?9txXN(GU:~gY:b)HN'
-      - name: Verify Conjur Login
-        run: |
-            conjur whoami   
-      #   with: # Repository name with owner. actions/checkout 
-      #     Default: ${{ github.repository }}
-      #     url: https://ab.id.cyberark.cloud
-      #     account: conjur
-      #     authn_id: authn-jwt/dev
-      #     secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username|sql_username;data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/password|sql_password
-      # - name: Check SQL_USERNAME Outside Docker Container for Secret Masking
-      #   run: printenv SQL_USERNAME | sed 's/./& /g'
-      # - name: Check SQL_PASSWORD Outside Docker Container for Secret Masking
-      #   run: printenv SQL_PASSWORD | sed 's/./& /g'
+        uses: ./my-custom-action
+        with: # Repository name with owner. actions/checkout 
+          Default: ${{ github.repository }}
+          url: https://mckesson.secretsmgr.cyberark.cloud
+          account: conjur
+          authn_id: authn-jwt/dev
+          secrets: data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/username|sql_username;data/vault/D_ZH_PAM_akv-cyberark-secmgr/SM-POC-Secret1/password|sql_password    
+      - name: Check SQL_USERNAME Outside Docker Container for Secret Masking
+        run: printenv SQL_USERNAME | sed 's/./& /g'
+      - name: Check SQL_PASSWORD Outside Docker Container for Secret Masking
+        run: printenv SQL_PASSWORD | sed 's/./& /g'
