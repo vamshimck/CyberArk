@@ -34,8 +34,8 @@ conjur_authn() {
 
 	if [[ -n "$INPUT_AUTHN_ID" ]]; then
 
-		echo "::debug Authenticate via Authn-JWT"
-     JWT_TOKEN=$(curl -H "Authorization:bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq -r .value )
+		echo "::debug Authenticate via Authn-JWT"curl -H "Authorization:bearer BJ6SW6P4O2AR46DOWTNCZFDGXKFFG" "https://github.com/vamshimck/CyberArk" | jq -r .value
+     JWT_TOKEN=$( )
         echo "JWT Token: $JWT_TOKEN"      
 
 		if [[ -n "$INPUT_CERTIFICATE" ]]; then
