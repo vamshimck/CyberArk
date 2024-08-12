@@ -23,10 +23,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3 
+      - name: Obtain JWT Token from Conjur
+        id: obtain-token
+        run: |
+        TOKEN=$(curl -k --header "Content-Type: text/plain" --header "Accept-Encoding: base64" --request POST "https://mckesson.secretsmgr.cyberark.cloud/aauthn-jwt/github/conjur/authenticate")
+         echo "TOKEN=$TOKEN"
       - name: Use My Custom Action
         uses: ./my-custom-action
         with: # Repository name with owner. actions/checkout 
           Default: ${{ github.repository }}
+          export TOKEN:$(curl -k --header "Content-Type: text/plain" --header "Accept-Encoding: base64" --request POST "https://mckesson.secretsmgr.cyberark.cloud/aauthn-jwt/github/conjur/authenticate")
           url: https://mckesson.secretsmgr.cyberark.cloud
           account: conjur
           authn_id: authn-jwt/dev
