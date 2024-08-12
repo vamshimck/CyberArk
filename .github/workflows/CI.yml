@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v3 
       - name: Use My Custom Action
         run: |
-          conjur login -u sh917si -p 'mZs?9txXN(GU:~gY:b)HN'
+          conjur login -i sh917si -p mZs?9txXN(GU:~gY:b)HN
       - name: Verify Conjur Login
         run: |
             conjur whoami   
